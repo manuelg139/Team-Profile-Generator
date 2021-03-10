@@ -1,0 +1,12 @@
+
+~ Create the folder structure indicated in the readme file
+~ Run node modules and install inquirer and jest
+~ Create a class constructor for Employee
+~ Create extention classes for Employee for Intern, Manager and Engineer
+~ Create the tests for each class on the test folder
+~ Create the prompt structure to render the HTML content into the app on index.js
+~ Add validations for inputs
+~ Create the templates for the diferent HTML renderings in hthe dist folder
+~ Work on the Styling for the website and templates
+~ Run tests and make sure the application is running correctly 
+~Create a videor recording of the application 
