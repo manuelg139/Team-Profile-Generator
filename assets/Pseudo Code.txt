@@ -5,6 +5,8 @@
 ~ Create extention classes for Employee for Intern, Manager and Engineer
 ~ Create the tests for each class on the test folder
 ~ Create the prompt structure to render the HTML content into the app on index.js
+~ Create functions to allow selections for Enginieer or Intern
+~ Create functions to render HTML with replaced data
 ~ Add validations for inputs
 ~ Create the templates for the diferent HTML renderings in hthe dist folder
 ~ Work on the Styling for the website and templates
