@@ -4,6 +4,7 @@ const inquirer = require('inquirer');
 const util = require('util');
 
 // EMPLOYEE CLASSES
+const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
@@ -11,7 +12,7 @@ const Intern = require('./lib/Intern');
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
-    
+
 const mangerQuestions = () => {
     return inquirer.prompt([ 
         {
@@ -33,7 +34,7 @@ const mangerQuestions = () => {
           type: 'input',
           name: 'managerEmail',
           message: 'What is your Manger Email?',
-          default: "npm install"
+          
         },
         {
           type: 'input',
@@ -43,7 +44,7 @@ const mangerQuestions = () => {
     ])
 };
 
- 
+
 const engineerQuestions = () => {
   return inquirer.prompt([ 
       {
