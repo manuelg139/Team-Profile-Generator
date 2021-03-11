@@ -13,6 +13,7 @@
     margin-top: -2rem;
     margin-bottom: 2rem;
     text-align: center;
+    text-shadow: -6px 5px rgb(211, 139, 4);
   }
   h1 {
     color: #f7a816;
@@ -21,6 +22,7 @@
     opacity: 0.8;
     margin-bottom:  -1rem;
     letter-spacing: .5em;
+    text-shadow: -2px 2px rgb(211, 139, 4);
     
     text-align: center;
   }
@@ -100,14 +102,18 @@
     background: linear-gradient(
       to right bottom,
       rgba(255, 255, 255, 0.7),
-      rgba(119, 224, 243, 0.3)
+      rgba(233, 186, 116, 0.3)
     );
     border: none;
     width: 100%;
     padding: 0.5rem;
     border-radius: 2rem;
+    
   }
-  
+
+  .team-desc p{
+    color: rgb(207, 137, 7);
+}
   .team {
     margin: 5rem;
     float: inline-start;
