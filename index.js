@@ -12,9 +12,11 @@ const Intern = require('./lib/Intern');
 
 //Employee Array we are pushing individual employees to before rendering to HTML
 let employees = [];
+let teamTitle;
+let teamDesc;
 
 
-
+//  ! MANAGER FUNCTION //
 const writeFileAsync = util.promisify(fs.writeFile);
 
 const mangerQuestions = () => {
@@ -23,6 +25,11 @@ const mangerQuestions = () => {
           type: 'input',
           name: 'teamTitle',
           message: 'What is the name of your team?',
+        },
+        {
+          type: 'input',
+          name: 'teamDesc',
+          message: 'What is the goals for this team?',
         },
         {
           type: 'input',
@@ -49,7 +56,7 @@ const mangerQuestions = () => {
 };
 
 
-
+//  ! NEW MEMBER FUNCTION //
 
 const newMember = () => {
   return inquirer.prompt([ 
@@ -70,29 +77,34 @@ const newMember = () => {
   } else if  (answers.newMember === "Intern")  {
     internQuestions();
   } else {
+
+  // Use readfile first to sync in the html file and specify where to add the employee objects
+    let index = fs.readFileSync('./src/index.html', 'utf8');
+    index = index.replace(/{{teamTitle}}/g, teamTitle);
+    index = index.replace(/{{teamDesc}}/g, teamDesc);
+  
+    // create a loop to print out all of the employees one by one depending on how many they would want to add
+    let managerCard = fs.readFileSync('./src/manager.html', 'utf8');
+    managerCard = managerCard.replace('{{name}}',manager.getName());
+    managerCard = managerCard.replace('{{role}}',manager.getRole());
+    managerCard = managerCard.replace('{{id}}',manager.getId());
+    managerCard = managerCard.replace('{{email}}',manager.getEmail());
+    managerCard = managerCard.replace('{{officeNumber}}',manager.getOfficeNumber());
+
+    cards = employees;
+    index = index.replace(/{{cards}}/g, cards);
+    fs.writeFileAsync('./dist/index.html', index);
+
+   
     console.log('Congratualtions!!! Your Team is Full', employees);
   }
- 
-/* 
-      switch(employee.team) {
-        case "Engineer":
-          engineerQuestions();
-          break;
-        case "Intern":
-          internQuestions();
-          break;
-        case  "No Teams To Add":
-          if (err){
-            console.log(err);
-        }else{
-          console.log('Your Team is Full');
-         }; */
 
-  });
+ 
+  })
 };
 
+//  ! INTERN FUNCTION //
 
- 
 const internQuestions = () => {
   return inquirer.prompt([ 
       {
@@ -125,6 +137,10 @@ const internQuestions = () => {
 });
 };
 
+
+
+
+//  ! ENGINEER FUNCTION //
 const engineerQuestions = () => {
   return inquirer.prompt([ 
       {
@@ -159,24 +175,27 @@ const engineerQuestions = () => {
 
 
 
+//  ! INITIAL FUNCTION //
+
 //Laying down the order for the functions and the answers with .then promises 
 const init = () => {
   mangerQuestions()
     .then(managerAnswers => { 
       //this is the informtion sent to manager class
-      manager = new Manager(managerAnswers.managerName, managerAnswers.managerId, managerAnswers.managerEmail, managerAnswers.officeNumber,);
+    manager = new Manager(managerAnswers.managerName, managerAnswers.managerId, managerAnswers.managerEmail, managerAnswers.officeNumber );
+      /* ? managerAnswers.teamTitle, managerAnswers.teamGoals */
+
       // pushing manager into - employees array
       employees.push(manager);
      //this is grsabbing the title of the new team from answers for the HTML 
-    teamTitle = managerAnswers.teamTitle;
+    teamTitle = managerAnswers.teamTitle; 
+    teamDesc = managerAnswers.teamDesc; 
     })
     .then(() => console.log('Input the New Team Member\'s Information'))
     .catch((err) => console.error(err))
     .then(() =>  
     newMember())
   }
-  
-
 
 // Function call to initialize app
 init();
