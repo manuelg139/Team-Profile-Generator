@@ -7,7 +7,7 @@
   h6{
     color: #f7a816;
     font-weight: 600;
-    font-size: 5rem;
+    font-size: 3.5rem;
   
     letter-spacing: .5em;
     margin-top: -2rem;
@@ -33,11 +33,26 @@
     opacity: 0.8;
     text-align: center;
   }
+  a {
+    color: #0749a7;
+    font-weight: 500;
+    opacity: 0.8;
+    text-align: center;
+  }
   
   h3 {
-    color: #426696;
+    color: #eba461;
     font-weight: 600;
     opacity: 0.8;
+    text-align: center;
+
+  }
+  h4 {
+    color: #eba461;
+    font-weight: 600;
+    opacity: 0.8;
+    text-align: center;
+/*     text-shadow: -1px 1px rgb(8, 0, 0); */
   }
   
   main {
@@ -162,3 +177,12 @@
     -webkit-text-fill-color: transparent;
   }
   
+  .copyright {
+ background-color: rgb(167, 210, 245);
+ line-height: 2.5rem;
+ color: #ffffff;
+ font-weight: 600;
+ opacity: 0.8;
+ text-align: center;
+
+  }

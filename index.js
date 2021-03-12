@@ -4,14 +4,14 @@ const inquirer = require('inquirer');
 const util = require('util');
 
 // EMPLOYEE CLASSES
-const Employee = require('./lib/Employee');
+
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 
 
-//Employee Array we are pushing individual employees to before rendering to HTML
-let employees = [];
+//Employee Array we are pushing individual team to before rendering to HTML
+let team = [];
 let teamTitle;
 let teamDesc;
 
@@ -82,8 +82,11 @@ const newMember = () => {
     let index = fs.readFileSync('./src/index.html', 'utf8');
     index = index.replace(/{{teamTitle}}/g, teamTitle);
     index = index.replace(/{{teamDesc}}/g, teamDesc);
+   
   
     // create a loop to print out all of the employees one by one depending on how many they would want to add
+
+    // manager card with repleacement items
     let managerCard = fs.readFileSync('./src/manager.html', 'utf8');
     managerCard = managerCard.replace('{{name}}',manager.getName());
     managerCard = managerCard.replace('{{role}}',manager.getRole());
@@ -91,17 +94,48 @@ const newMember = () => {
     managerCard = managerCard.replace('{{email}}',manager.getEmail());
     managerCard = managerCard.replace('{{officeNumber}}',manager.getOfficeNumber());
 
-    cards = employees;
+    // tried adding all cards together but get me an error
+    // cards will need to be managerCard + a for loop of the team array to render each eaployee individaully 
+    cards = managerCard;
+    for (var i = 0; i < team.length; i++) {
+      var employee = team[i];
+      // Cards adds and then equals every new employee card info.
+      cards += renderEmployee(employee);
+  }
+// add cards into the html
     index = index.replace(/{{cards}}/g, cards);
-    fs.writeFileAsync('./dist/index.html', index);
 
-   
-    console.log('Congratualtions!!! Your Team is Full', employees);
+// this function deploys into the team.html
+    fs.writeFile('./dist/team.html', index, function (err) {
+      if (err) throw err;
+      console.log('Congratualtions!!! Your Team is Full') 
+      console.log('File team.html has been deployed!!') ;
+      console.log(cards) ;
+    });
   }
 
- 
   })
 };
+// fucntion to render the intern and engineer cards individually depeding on selection
+const renderEmployee = (employee) =>  {
+  if (employee.getRole() === "Intern") {
+      let internCard = fs.readFileSync('./src/intern.html', 'utf8');
+      internCard = internCard.replace('{{name}}', employee.getName());
+      internCard = internCard.replace('{{role}}', employee.getRole());
+      internCard = internCard.replace('{{id}}', employee.getId());
+      internCard = internCard.replace('{{email}}', employee.getEmail());
+      internCard = internCard.replace('{{school}}', employee.getSchool());
+      return internCard;
+  } else if (employee.getRole() === "Engineer") {
+      let engineerCard = fs.readFileSync('./src/engineer.html', 'utf8');
+      engineerCard = engineerCard.replace('{{name}}', employee.getName());
+      engineerCard = engineerCard.replace('{{role}}', employee.getRole());
+      engineerCard = engineerCard.replace('{{id}}', employee.getId());
+      engineerCard = engineerCard.replace('{{email}}', employee.getEmail());
+      engineerCard = engineerCard.replace('{{github}}', employee.getGithub());
+      return engineerCard;
+  }
+}
 
 //  ! INTERN FUNCTION //
 
@@ -131,8 +165,8 @@ const internQuestions = () => {
   ]) .then(internAnswers => { 
     //this is the informtion sent to intern class
     let intern = new Intern(internAnswers.internName, internAnswers.internId, internAnswers.internEmail, internAnswers.shcool);
-    // pushing intern into - employees array
-    employees.push(intern);
+    // pushing intern into - team array
+    team.push(intern);
     newMember();
 });
 };
@@ -166,8 +200,8 @@ const engineerQuestions = () => {
   ]) .then(engineerAnswers => { 
     //this is the informtion sent to engineer class
     let engineer = new Engineer(engineerAnswers.engineerName, engineerAnswers.engineerId, engineerAnswers.engineerEmail, engineerAnswers.github);
-    // pushing engineer into - employees array
-    employees.push(engineer);
+    // pushing engineer into - team array
+    team.push(engineer);
     newMember();
   });
 };
@@ -185,8 +219,8 @@ const init = () => {
     manager = new Manager(managerAnswers.managerName, managerAnswers.managerId, managerAnswers.managerEmail, managerAnswers.officeNumber );
       /* ? managerAnswers.teamTitle, managerAnswers.teamGoals */
 
-      // pushing manager into - employees array
-      employees.push(manager);
+      // pushing manager into - team array
+      team.push(manager);
      //this is grsabbing the title of the new team from answers for the HTML 
     teamTitle = managerAnswers.teamTitle; 
     teamDesc = managerAnswers.teamDesc; 
