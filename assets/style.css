@@ -5,7 +5,7 @@
   }
 
   h6{
-    color: #f7a816;
+    color: #76dbe2;
     font-weight: 600;
     font-size: 3.5rem;
   
@@ -13,16 +13,16 @@
     margin-top: -2rem;
     margin-bottom: 2rem;
     text-align: center;
-    text-shadow: -6px 5px rgb(211, 139, 4);
+    text-shadow: -6px 5px rgb(213, 252, 255);
   }
   h1 {
-    color: #f7a816;
+    color: #76dbe2;
     font-weight: 600;
     font-size: 3rem;
     opacity: 0.8;
     margin-bottom:  -1rem;
     letter-spacing: .5em;
-    text-shadow: -2px 2px rgb(211, 139, 4);
+    text-shadow: -6px 5px rgb(213, 252, 255);
     
     text-align: center;
   }
@@ -57,8 +57,8 @@
   
   main {
     font-family: "Poppins", sans-serif;
-    min-height: 200vh;
-    background: linear-gradient(to right top, #ecb847, #f7d18a);
+    min-height: 250vh;
+    background: linear-gradient(to right top, #9afde9, #e4fffa);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,9 +66,9 @@
   
   .glass {
     background: white;
-    min-height: 160vh;
-    max-height: 190vh;
-    margin-top: -10rem;
+    min-height: 240;
+    max-height: 220;
+    margin-top: -3rem;
    
     width: 80%;
     background: linear-gradient(
@@ -115,20 +115,28 @@
   
   .team-desc {
     background: linear-gradient(
-      to right bottom,
-      rgba(255, 255, 255, 0.7),
-      rgba(233, 186, 116, 0.3)
+      to left top,
+      rgba(203, 241, 247, 0.8),
+      rgba(255, 255, 255, 0.5)
     );
     border: none;
     width: 100%;
     padding: 0.5rem;
     border-radius: 2rem;
-    
   }
 
-  .team-desc p{
-    color: rgb(207, 137, 7);
+  .Logo{
+    margin-top: -4rem;
+    margin-bottom: -6rem; 
+  }
+  .logo-link img:hover{
+    transform:scale(1.2);
+  }
+
+  .team-desc:hover {
+  transform:scale(1.1);
 }
+
   .team {
     margin: 5rem;
     float: inline-start;
@@ -149,6 +157,88 @@
     box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
     justify-content: space-between;
   }
+
+
+/* ! COLOR CODED CARDS */
+.manager-card {
+  max-width: 100%;
+/*   display: flex; */
+background:url(https://img.icons8.com/nolan/128/overwolf--v2.png) no-repeat,  linear-gradient(
+    to left top,
+    rgba(245, 193, 172, 0.8),
+    rgba(169, 250, 246, 0.5)
+  );
+  background-position: 10% 50%;
+
+  border-radius: 1rem;
+  margin: 2rem 0rem;
+  padding: 1rem;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+  justify-content: space-between;
+
+}
+
+.egnineer-card {
+  max-width: 100%;
+/*   display: flex; */
+background:url(https://img.icons8.com/nolan/128/pixel-gun-3d.png) no-repeat, linear-gradient(
+    to left top,
+    rgba(203, 241, 247, 0.8),
+    rgba(247, 243, 5, 0.5)
+  );
+  border-radius: 1rem;
+  margin: 2rem 0rem;
+  padding: 1rem;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+  justify-content: space-between;
+  
+  background-position: 10% 50%;
+ 
+}
+
+
+.intern-card {
+  max-width: 100%;
+/*   display: flex; */
+background:url(https://img.icons8.com/nolan/128/desura.png) no-repeat,
+  linear-gradient(
+    to left top,
+    rgba(213, 255, 205, 0.8),
+    rgba(215, 174, 248, 0.5)
+  );
+  border-radius: 1rem;
+  margin: 2rem 0rem;
+  padding: 1rem;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+  justify-content: space-between;
+
+  background-position: 10% 50%;
+}
+
+
+
+.manager-card:hover {
+  transform:scale(1.1);
+}
+
+
+.egnineer-card:hover {
+  transform:scale(1.1);
+}
+
+
+.intern-card:hover {
+  transform:scale(1.1);
+}
+
+
+
+
+/* COLOR CODED CARDS END */
+
+
+
+
   
   .card-info {
     display: flex;
@@ -160,6 +250,9 @@
   .emp-photo{
     display: flex;
     flex-direction: column;
+  }
+  .container{
+    margin-top: 4rem;
   }
   .container img{
    height: 250px;
@@ -186,3 +279,101 @@
  text-align: center;
 
   }
+
+
+
+
+  /* DOC CARDS */
+
+
+  .doc-card {
+    width: 26%;
+    height: 100%;
+    float: left;
+    background: linear-gradient(
+      to left top,
+      rgba(203, 241, 247, 0.8),
+      rgba(255, 255, 255, 0.5)
+    );
+    border-radius: 1rem;
+    margin: 3rem 3rem;
+    padding: 1rem;
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+    justify-content: space-between;
+    text-align: center;
+  }
+
+
+  .doc-card:hover {
+    transform:scale(1.1);
+  }
+  
+
+  .resume-link {
+   text-align: center;
+   width: 100%;
+  }
+  
+  .resume-link img{
+    height: 55px;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  }
+
+  .resume-link img:hover {
+    transform:scale(1.3);
+  }
+
+
+/* DOCUMENT ICONS */
+
+.PDF{
+  width: 100%;
+  height: 120px;
+  background-image: url('https://img.icons8.com/nolan/64/pdf.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  color: #22dfe1;
+}
+
+.REPO{
+  width: 100%;
+  height: 120px;
+  background-image: url('https://img.icons8.com/nolan/64/download-graph-report.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  color: #22dfe1;
+}
+.MEDIA{
+  width: 100%;
+  height: 120px;
+  background-image: url('https://img.icons8.com/nolan/64/skip-to-start.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  color: #22dfe1;
+}
+
+
+.WORD{
+  width: 100%;
+  height: 120px;
+  background-image: url('https://img.icons8.com/nolan/64/ms-word.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  color: #22dfe1;
+}
+
+.EXCEL{
+  width: 100%;
+  height: 120px;
+  background-image: url('https://img.icons8.com/nolan/64/ms-excel.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  color: #22dfe1;
+}
+
+
+
+  

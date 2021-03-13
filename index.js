@@ -8,10 +8,11 @@ const util = require('util');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
-
+const Document = require('./lib/Document');
 
 //Employee Array we are pushing individual team to before rendering to HTML
 let team = [];
+let documents = [];
 let teamTitle;
 let teamDesc;
 
@@ -56,6 +57,185 @@ const mangerQuestions = () => {
 };
 
 
+/* //  ! ADD DOCUMENTS FUNCTION //
+const addDocuments = () => {
+  return inquirer.prompt([ 
+    {
+      type: 'confirm',
+      name: 'documents',
+      message: "Would you like add a document?",
+    },
+
+  ])  .then((answers) =>  {
+    
+    if (answers.confirm) {
+      console.log('ICONFIREMD YES');
+      return inquirer.prompt([ 
+        {
+          type: 'list',
+          name: 'docType',
+          message: "What type of document is this? ",
+          choices: [
+            "PDF",
+            "WORD",
+            "EXCEL",
+            "REPO",
+          ]
+        },
+
+        {
+          type: 'input',
+          name: 'newDoc',
+          message: "Add path to the Document",
+          
+        },
+
+        {
+          type: 'input',
+          name: 'docType',
+          message: "What type of document is this? ",
+        },
+        {
+          type: 'confirm',
+          name: 'anotherDoc',
+          message: "Would you like add another document?",
+        },
+      ]) .then((answers) =>  {
+      
+          if (answers.confirm.confirm) {
+            addDocuments();
+          } else {
+            console.log('Input the New Team Member\'s Information');
+            newMember();
+          }
+      });
+
+
+
+    } else {
+
+      console.log('ICONFIREMD NO');
+      newMember();
+    }
+  });
+}
+
+
+
+ */
+
+
+
+
+
+
+
+
+
+//  ! ADD DOCUMENTS FUNCTION //
+
+
+const addDocuments = () => {
+  return inquirer.prompt([ 
+    {
+      type: 'list',
+      name: 'documents',
+      message: 'Would you like add a document?',
+      choices: [
+        "YES",
+        "NO",
+      ]
+    },
+    ]) .then((answers) =>  {
+    
+    if (answers.documents === "YES") {
+      console.log('I CONFIREMD YES NEW');
+      newDocument();
+    } else if  (answers.documents === "NO")  {
+      console.log('I CONFIREMD NO NEW');
+      newMember();
+    } 
+  });
+  }
+  
+  
+  
+const newDocument = () => {
+  return inquirer.prompt([ 
+
+        
+        {
+          type: 'list',
+          name: 'docType',
+          message: "What type of document is this? ",
+          choices: [
+            "PDF",
+            "WORD",
+            "EXCEL",
+            "REPO",
+            "MEDIA",
+          ]
+        },
+
+        {
+          type: 'input',
+          name: 'docTitle',
+          message: "What is the name of the document?",
+        },
+
+        {
+          type: 'input',
+          name: 'docPath',
+          message: "What is the path of the file? (../assets/files/+\"YOUR-FILE\")",
+          
+        },
+
+        {
+        type: 'list',
+        name: 'anotherDoc',
+        message: 'Would you like add another document?',
+        choices: [
+          "YES",
+          "NO",
+        ]
+      },
+
+      ]) .then((documentAnswers) =>  {
+
+          //this is the informtion sent to intern class
+      let doc = new Document (documentAnswers.docType, documentAnswers.docPath, documentAnswers.docTitle);
+      // pushing intern into - documents array
+      documents.push(doc);
+
+        // document card with repleacement items
+
+
+      let documentCard = fs.readFileSync('./src/document.html', 'utf8');
+      documentCard = documentCard.replace('{{type}}',doc.getType());
+      documentCard = documentCard.replace('{{path}}',doc.getPath());
+      documentCard = documentCard.replace('{{title}}',doc.getTitle());
+      documentCard = documentCard.replace('{{doc}}',doc.getDoc()); 
+      
+      
+      docCards = documentCard;
+      for (var i = 0; i < documents.length; i++) {
+        var docs = documents[i];
+        // Cards adds and then equals every new employee card info.
+        docCards += documentCard;
+      }
+
+
+        if (documentAnswers.anotherDoc === "YES") {
+          console.log('I CONFIREMD YES ANOTHER');
+          newDocument();
+        } else if  (documentAnswers.anotherDoc === "NO")  {
+          console.log('I CONFIREMD NO ANOTHER');
+          newMember();
+        } 
+      });
+    }
+
+
 //  ! NEW MEMBER FUNCTION //
 
 const newMember = () => {
@@ -96,14 +276,18 @@ const newMember = () => {
 
     // tried adding all cards together but get me an error
     // cards will need to be managerCard + a for loop of the team array to render each eaployee individaully 
+
     cards = managerCard;
     for (var i = 0; i < team.length; i++) {
       var employee = team[i];
       // Cards adds and then equals every new employee card info.
       cards += renderEmployee(employee);
   }
+
+
 // add cards into the html
     index = index.replace(/{{cards}}/g, cards);
+    index = index.replace(/{{docCards}}/g, docCards);
 
 // this function deploys into the team.html
     fs.writeFile('./dist/team.html', index, function (err) {
@@ -111,11 +295,14 @@ const newMember = () => {
       console.log('Congratualtions!!! Your Team is Full') 
       console.log('File team.html has been deployed!!') ;
       console.log(cards) ;
+      console.log(docCards) ;
     });
   }
 
   })
 };
+
+
 // fucntion to render the intern and engineer cards individually depeding on selection
 const renderEmployee = (employee) =>  {
   if (employee.getRole() === "Intern") {
@@ -136,6 +323,13 @@ const renderEmployee = (employee) =>  {
       return engineerCard;
   }
 }
+
+
+
+
+
+
+
 
 //  ! INTERN FUNCTION //
 
@@ -225,10 +419,9 @@ const init = () => {
     teamTitle = managerAnswers.teamTitle; 
     teamDesc = managerAnswers.teamDesc; 
     })
-    .then(() => console.log('Input the New Team Member\'s Information'))
     .catch((err) => console.error(err))
     .then(() =>  
-    newMember())
+    addDocuments())
   }
 
 // Function call to initialize app
