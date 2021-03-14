@@ -2,7 +2,7 @@
 
 ## Description
 
-Every organization needs a fast and efficient way to build a employee directory. This program was built for a busy HR professional that needs a way to build a directory web page. The goal of this app should be to reduce the amount of time it takes some one to build out a list of company employees. This app uses a variety of CS functionality, I ended up having to learn many things including OOP and regex to complete this app.
+This application allows you to create an taskforce team within your company to take on specific projects.
 
 ## Table of Contents
 
@@ -34,7 +34,9 @@ You will be able to:
 - add documents needed for this project including types of PDF, EXCEL, MEDIA, WORD and REPOSITORIES.
 - more functions comming soon
 
-## Images
+## Media
+
+- Video Link (https://drive.google.com/file/d/1Ob5YJlu_9XdpFr0DKs3npWsZQJxp0_1N/view?usp=sharing)
 
 ## License
 
