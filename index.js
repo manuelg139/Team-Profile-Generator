@@ -2,6 +2,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const util = require('util');
+let validator = require("email-validator");
 
 // EMPLOYEE CLASSES
 
@@ -17,7 +18,22 @@ let teamTitle;
 let teamDesc;
 
 
-//  ! MANAGER FUNCTION //
+
+// ? VALIDATIONS //
+
+
+let emailValidation = email => {
+  if (validator.validate(email)) {
+     return true
+  } else {
+    return "Please enter a valid email address";
+  };
+};
+
+
+
+
+//  ? MANAGER FUNCTION //
 const writeFileAsync = util.promisify(fs.writeFile);
 
 const mangerQuestions = () => {
@@ -46,6 +62,7 @@ const mangerQuestions = () => {
           type: 'input',
           name: 'managerEmail',
           message: 'What is your Manger Email?',
+          validate: emailValidation
           
         },
         {
@@ -294,8 +311,6 @@ const newMember = () => {
       if (err) throw err;
       console.log('Congratualtions!!! Your Team is Full') 
       console.log('File team.html has been deployed!!') ;
-      console.log(cards) ;
-      console.log(docCards) ;
     });
   }
 
@@ -349,6 +364,7 @@ const internQuestions = () => {
         type: 'input',
         name: 'internEmail',
         message: 'What is the intern\'s email?',
+        validate: emailValidation
       },
       {
         type: 'input',
@@ -385,6 +401,7 @@ const engineerQuestions = () => {
         type: 'input',
         name: 'engineerEmail',
         message: 'What is the engineer\'s email?',
+        validate: emailValidation
       },
       {
         type: 'input',

@@ -57,7 +57,7 @@
   
   main {
     font-family: "Poppins", sans-serif;
-    min-height: 250vh;
+    height: 260vh;
     background: linear-gradient(to right top, #9afde9, #e4fffa);
     display: flex;
     align-items: center;
@@ -66,11 +66,10 @@
   
   .glass {
     background: white;
-    min-height: 240;
-    max-height: 220;
+   height: 250vh;
     margin-top: -3rem;
    
-    width: 80%;
+    width: 60%;
     background: linear-gradient(
       to right bottom,
       rgba(255, 255, 255, 0.7),
@@ -103,11 +102,27 @@
     top: 90%;
     left: 2%;
   }
+
+
   
   .team {
     flex: 2;
   }
   
+
+  .team-cards{
+   /*  flex: 2; */
+    height: 60%;
+  }
+  .doc-cards{
+  /*   flex: 2; */
+    height: 20%;
+  }
+  .logo-cards{
+    margin-top: 5rem;
+  /*   flex: 2; */
+    height: 10%;
+  }
   
   .status {
     margin-bottom: 3rem;
@@ -126,8 +141,11 @@
   }
 
   .Logo{
-    margin-top: -4rem;
-    margin-bottom: -6rem; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+ 
   }
   .logo-link img:hover{
     transform:scale(1.2);
@@ -141,6 +159,9 @@
     margin: 5rem;
     float: inline-start;
     justify-content: space-evenly;
+    text-align: center;
+    flex: 1;
+    width: 80%;
   }
   
   .card {
@@ -191,9 +212,7 @@ background:url(https://img.icons8.com/nolan/128/pixel-gun-3d.png) no-repeat, lin
   padding: 1rem;
   box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
   justify-content: space-between;
-  
   background-position: 10% 50%;
- 
 }
 
 
@@ -253,6 +272,7 @@ background:url(https://img.icons8.com/nolan/128/desura.png) no-repeat,
   }
   .container{
     margin-top: 4rem;
+    height: 20%;
   }
   .container img{
    height: 250px;
@@ -287,8 +307,8 @@ background:url(https://img.icons8.com/nolan/128/desura.png) no-repeat,
 
 
   .doc-card {
-    width: 26%;
-    height: 100%;
+    width: 24%;
+    height: 80%;
     float: left;
     background: linear-gradient(
       to left top,
@@ -296,7 +316,7 @@ background:url(https://img.icons8.com/nolan/128/desura.png) no-repeat,
       rgba(255, 255, 255, 0.5)
     );
     border-radius: 1rem;
-    margin: 3rem 3rem;
+    margin: 3rem 2rem;
     padding: 1rem;
     box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
     justify-content: space-between;
