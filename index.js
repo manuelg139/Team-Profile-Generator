@@ -74,81 +74,6 @@ const mangerQuestions = () => {
 };
 
 
-/* //  ! ADD DOCUMENTS FUNCTION //
-const addDocuments = () => {
-  return inquirer.prompt([ 
-    {
-      type: 'confirm',
-      name: 'documents',
-      message: "Would you like add a document?",
-    },
-
-  ])  .then((answers) =>  {
-    
-    if (answers.confirm) {
-      console.log('ICONFIREMD YES');
-      return inquirer.prompt([ 
-        {
-          type: 'list',
-          name: 'docType',
-          message: "What type of document is this? ",
-          choices: [
-            "PDF",
-            "WORD",
-            "EXCEL",
-            "REPO",
-          ]
-        },
-
-        {
-          type: 'input',
-          name: 'newDoc',
-          message: "Add path to the Document",
-          
-        },
-
-        {
-          type: 'input',
-          name: 'docType',
-          message: "What type of document is this? ",
-        },
-        {
-          type: 'confirm',
-          name: 'anotherDoc',
-          message: "Would you like add another document?",
-        },
-      ]) .then((answers) =>  {
-      
-          if (answers.confirm.confirm) {
-            addDocuments();
-          } else {
-            console.log('Input the New Team Member\'s Information');
-            newMember();
-          }
-      });
-
-
-
-    } else {
-
-      console.log('ICONFIREMD NO');
-      newMember();
-    }
-  });
-}
-
-
-
- */
-
-
-
-
-
-
-
-
-
 //  ! ADD DOCUMENTS FUNCTION //
 
 
@@ -225,8 +150,6 @@ const newDocument = () => {
       documents.push(doc);
 
         // document card with repleacement items
-
-
       let documentCard = fs.readFileSync('./src/document.html', 'utf8');
       documentCard = documentCard.replace('{{type}}',doc.getType());
       documentCard = documentCard.replace('{{path}}',doc.getPath());
