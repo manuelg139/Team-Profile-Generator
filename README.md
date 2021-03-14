@@ -35,6 +35,7 @@ You will be able to:
 - more functions comming soon
 
 ## Media
+![Team-Profile-Generator-Manuel Gonzalez](https://user-images.githubusercontent.com/75399668/111081904-7fade200-84d3-11eb-9ec0-d3ac5a10df1c.gif)
 
 - Video Link (https://drive.google.com/file/d/1Ob5YJlu_9XdpFr0DKs3npWsZQJxp0_1N/view?usp=sharing)
 
